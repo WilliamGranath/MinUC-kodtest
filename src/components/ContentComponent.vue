@@ -26,8 +26,12 @@
 
 <script>
 export default {
+  // Komponentens namn
   name: "ContentDisplay",
+
+  // setup-funktionen används för att definiera komponentens reaktiva data och metoder
   setup() {
+    // Definierar en array med information som ska visas i komponenten
     const info = [
       {
         title: "Hur funkar Förlustanmälan?",
@@ -56,6 +60,7 @@ export default {
       },
     ];
 
+    // Returnerar info-arrayen så att den blir tillgänglig i komponentens template
     return {
       info,
     };

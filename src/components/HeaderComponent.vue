@@ -11,29 +11,39 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
-import { getContent } from "@/api/api"; // Adjust import path as per your project structure
+import { ref, onMounted } from "vue"; // Importerar ref och onMounted från Vue
+import { getContent } from "@/api/api"; // Importerar getContent-funktionen från API-modulen (justera sökvägen enligt din projektstruktur)
 
 export default {
+  // Komponentens namn
   name: "ContentComponent",
+
+  // setup-funktionen används för att definiera komponentens reaktiva data och metoder
   setup() {
+    // Definierar reaktiva referenser för metaTitle och metaDescription
     const metaTitle = ref("");
     const metaDescription = ref("");
 
+    // Definierar en funktion för att navigera till en specifik URL
     const navigateToURL = () => {
       window.location.href = "https://www1.minuc.se/bedragerisparr";
     };
 
+    // Körs när komponenten är monterad
     onMounted(async () => {
       try {
+        // Hämtar innehåll från API:et
         const response = await getContent();
+        // Uppdaterar reaktiva variabler med data från API:et
         metaTitle.value = response.data.metaTitle.value;
         metaDescription.value = response.data.metaDescription.value;
       } catch (error) {
+        // Loggar ett felmeddelande om något går fel vid hämtning av innehåll
         console.error("Error fetching content:", error);
       }
     });
 
+    // Returnerar de reaktiva variablerna och metoden så att de blir tillgängliga i komponentens template
     return {
       metaTitle,
       metaDescription,

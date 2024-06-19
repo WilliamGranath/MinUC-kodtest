@@ -35,33 +35,41 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
-import { getContent } from "../api/api"; // Adjust import path as per your project structure
+import { ref, onMounted } from "vue"; // Importerar ref och onMounted från Vue
+import { getContent } from "../api/api"; // Importerar getContent-funktionen från API-modulen (justera sökvägen enligt din projektstruktur)
 
 export default {
+  // Komponentens namn
   name: "MainComponent",
+
+  // Definierar props som komponenten kan ta emot
   props: {
-    Header: String,
+    Header: String, // Header är en prop av typen String
   },
+
+  // setup-funktionen används för att definiera komponentens reaktiva data och metoder
   setup() {
+    // Definierar en reaktiv referens för Header
     const Header = ref("");
 
-    // Fetch content on component mount
+    // Körs när komponenten är monterad
     onMounted(async () => {
       try {
+        // Hämtar innehåll från API:et
         const response = await getContent();
-        // Assuming response.data contains metaTitle and metaDescription
+        // Uppdaterar den reaktiva variabeln Header med data från API:et
         Header.value = response.data.name;
       } catch (error) {
+        // Loggar ett felmeddelande om något går fel vid hämtning av innehåll
         console.error("Error fetching content:", error);
       }
     });
 
+    // Returnerar de reaktiva variablerna och metoderna så att de blir tillgängliga i komponentens template
     return {};
   },
 };
 </script>
-//
 <style>
 .main {
   padding: 1.7vw 0vw;
