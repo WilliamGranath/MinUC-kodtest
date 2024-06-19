@@ -21,4 +21,4 @@
    npm run dev
    ```
 
-4. Öppna webbläsaren och besök `http://localhost:3000` för att se sidan.
+4. Öppna webbläsaren och besök `http://localhost:5173/` för att se sidan.
